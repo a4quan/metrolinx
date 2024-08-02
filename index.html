@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Path Border Fill Example</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .line {
+        stroke: rgb(204, 204, 204);
+        stroke-width: 2;
+        }
+
+        .avenir {
+            font-family: 'Avenir Pro', sans-serif;
+            font-size: 16px;
+            fill: black; /* text color */
+        }
+
+        .avenirBox {
+            font-family: 'Avenir Pro', sans-serif;
+            font-size: 16px;
+            fill: rgb(255, 255, 255); /* text color */
+        }
+
+        .header {
+            width: 100%;
+            height: 65px; /* Height of the header */
+            background-color: rgba(84, 113, 52, 1); /* Background color of the header */
+            color: white; /* Text color */
+            display: flex;
+            justify-content: left; /* Center the text horizontally */
+            align-items: center; /* Center the text vertically */
+            font-size: 36px; /* Font size of the text */
+            font-family: 'Avenir Pro', sans-serif;
+            padding-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+          OnCorr Transition Readiness
+    </div>
+    <svg width="1580" height="770"></svg>
+
+    <script>
+        function formatDate(dateString) {
+            // Create a Date object from the input string
+            var date = new Date(dateString);
+            
+            // Define options for toLocaleDateString
+            var options = { year: 'numeric', month: 'long', day: 'numeric' };
+            
+            // Format the date to the desired format
+            var formattedDate = date.toLocaleDateString('en-US', options);
+            
+            return formattedDate;
+        }
+
+        // Set up the SVG
+        const svg = d3.select("svg");
+
+        var perVar = "";
+        var teamVar = "";
+
+        // Rail Tracks
+        var spacing = 10;
+        var numLines = 72;
+        var numLinesRight = 72;
+
+        // Generate the lines
+        var lines1 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines1.push({x1: x, y1: 300, x2: x + spacing, y2: 304});}
+        var lines2 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines2.push({x1: x, y1: 360, x2: x + spacing, y2: 364});}
+        var lines3 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines3.push({x1: x, y1: 420, x2: x + spacing, y2: 424});}
+        var lines4 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines4.push({x1: x, y1: 480, x2: x + spacing, y2: 484});}
+        var lines5 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines5.push({x1: x, y1: 540, x2: x + spacing, y2: 544});}
+        var lines6 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines6.push({x1: x, y1: 600, x2: x + spacing, y2: 604});}
+
+        var lines7  = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines1.push({x1: x, y1: 100, x2: x - spacing, y2: 104});}
+        var lines8  = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines2.push({x1: x, y1: 150, x2: x - spacing, y2: 154});}
+        var lines9  = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines3.push({x1: x, y1: 200, x2: x - spacing, y2: 204});}
+        var lines10 = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines4.push({x1: x, y1: 250, x2: x - spacing, y2: 254});}
+        var lines11 = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines5.push({x1: x, y1: 300, x2: x - spacing, y2: 304});}
+        var lines12 = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines6.push({x1: x, y1: 350, x2: x - spacing, y2: 354});}
+
+        var lines = lines1.concat(lines2).concat(lines3).concat(lines4).concat(lines5).concat(lines6);
+
+        // Add lines to the SVG
+        svg.selectAll("line").data(lines).enter().append("line").attr("class", "line").attr("x1", function(d) { return d.x1; }).attr("y1", function(d) { return d.y1; }).attr("x2", function(d) { return d.x2; }).attr("y2", function(d) { return d.y2; });
+
+        // Middle
+        const middle = svg.append("rect").attr("x",760).attr("y",50).attr("width",100).attr("height",650).attr("fill","black")
+        const block1 = svg.append("rect").attr("x",720).attr("y",284).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text1 = svg.append("text").attr("x",740).attr("y",300).attr("text-anchor","middle").text("TRC").attr("class","avenirBox").style("font-weight", "bold");
+        const block2 = svg.append("rect").attr("x",720).attr("y",344).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text2 = svg.append("text").attr("x",740).attr("y",360).attr("text-anchor","middle").text("FAM").attr("class","avenirBox").style("font-weight", "bold");
+        const block3 = svg.append("rect").attr("x",720).attr("y",404).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text3 = svg.append("text").attr("x",740).attr("y",420).attr("text-anchor","middle").text("TSP").attr("class","avenirBox").style("font-weight", "bold");
+        const block4 = svg.append("rect").attr("x",720).attr("y",464).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text4 = svg.append("text").attr("x",740).attr("y",480).attr("text-anchor","middle").text("NOC").attr("class","avenirBox").style("font-weight", "bold");
+        const block5 = svg.append("rect").attr("x",720).attr("y",524).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text5 = svg.append("text").attr("x",740).attr("y",540).attr("text-anchor","middle").text("RVM").attr("class","avenirBox").style("font-weight", "bold");
+        const block6 = svg.append("rect").attr("x",720).attr("y",584).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text6 = svg.append("text").attr("x",740).attr("y",600).attr("text-anchor","middle").text("TECH").attr("class","avenirBox").style("font-weight", "bold").style("font-size", "14px");
+
+        const block7 = svg.append("rect").attr("x",860).attr("y",84).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text7 = svg.append("text").attr("x",880).attr("y",100).attr("text-anchor","middle").text("PER").attr("class","avenirBox").style("font-weight", "bold");
+        const block8 = svg.append("rect").attr("x",860).attr("y",134).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text8 = svg.append("text").attr("x",880).attr("y",150).attr("text-anchor","middle").text("CMS").attr("class","avenirBox").style("font-weight", "bold");
+        const block9 = svg.append("rect").attr("x",860).attr("y",184).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text9 = svg.append("text").attr("x",880).attr("y",200).attr("text-anchor","middle").text("FIN").attr("class","avenirBox").style("font-weight", "bold");
+        const block10 = svg.append("rect").attr("x",860).attr("y",234).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text10 = svg.append("text").attr("x",880).attr("y",250).attr("text-anchor","middle").text("Q&I").attr("class","avenirBox").style("font-weight", "bold");
+        const block11 = svg.append("rect").attr("x",860).attr("y",284).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text11 = svg.append("text").attr("x",880).attr("y",300).attr("text-anchor","middle").text("ENV").attr("class","avenirBox").style("font-weight", "bold");
+        const block12 = svg.append("rect").attr("x",860).attr("y",334).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text12 = svg.append("text").attr("x",880).attr("y",350).attr("text-anchor","middle").text("ENE").attr("class","avenirBox").style("font-weight", "bold");
+        const block13 = svg.append("rect").attr("x",860).attr("y",384).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block14 = svg.append("rect").attr("x",860).attr("y",434).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block15 = svg.append("rect").attr("x",860).attr("y",484).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block16 = svg.append("rect").attr("x",860).attr("y",534).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block17 = svg.append("rect").attr("x",860).attr("y",584).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+
+        // Define a simple path (triangle in this case)
+        const path1 = "M 0 300 L 720 300"; const path1o = "M 0 304 L 720 304"; 
+        const path2 = "M 0 360 L 720 360"; const path2o = "M 0 364 L 720 364"; 
+        const path3 = "M 0 420 L 720 420"; const path3o = "M 0 424 L 720 424";
+        const path4 = "M 0 480 L 720 480"; const path4o = "M 0 484 L 720 484";
+        const path5 = "M 0 540 L 720 540"; const path5o = "M 0 544 L 720 544"; 
+        const path6 = "M 0 600 L 720 600"; const path6o = "M 0 604 L 720 604";
+
+        const path7  = "M 1580 100 L 900 100"; const path7o   = "M 1580 104 L 900 104";
+        const path8  = "M 1580 150 L 900 150"; const path8o   = "M 1580 154 L 900 154";
+        const path9  = "M 1580 200 L 900 200"; const path9o   = "M 1580 204 L 900 204";
+        const path10 = "M 1580 250 L 900 250"; const path10o  = "M 1580 254 L 900 254";
+        const path11 = "M 1580 300 L 900 300"; const path11o  = "M 1580 304 L 900 304";
+        const path12 = "M 1580 350 L 900 350"; const path12o  = "M 1580 354 L 900 354";
+        const path13 = "M 1580 400 L 900 400"; const path13o  = "M 1580 404 L 900 404";
+        const path14 = "M 1580 450 L 900 450"; const path14o  = "M 1580 454 L 900 454";
+        const path15 = "M 1580 500 L 900 500"; const path15o  = "M 1580 504 L 900 504";
+        const path16 = "M 1580 550 L 900 550"; const path16o  = "M 1580 554 L 900 554";
+        const path17 = "M 1580 600 L 900 600"; const path17o  = "M 1580 604 L 900 604";
+
+        var teamLabel = svg.append("text").attr("x",50).attr("y",150).text(perVar).attr("class","avenir").style("font-size", "24px").style("font-weight", "bold");
+        var perLabel = svg.append("text").attr("x",50).attr("y",185).text(teamVar).attr("class","avenir").style("font-size", "24px");
+
+        // Gold Path
+        const path1g = "M 595 300 L 720 300"; const path1og = "M 595 304 L 720 304"; 
+        const path2g = "M 595 360 L 720 360"; const path2og = "M 595 364 L 720 364"; 
+        const path3g = "M 595 420 L 720 420"; const path3og = "M 595 424 L 720 424";
+        const path4g = "M 595 480 L 720 480"; const path4og = "M 595 484 L 720 484";
+        const path5g = "M 595 540 L 720 540"; const path5og = "M 595 544 L 720 544"; 
+        const path6g = "M 595 600 L 720 600"; const path6og = "M 595 604 L 720 604";
+
+        const path7g  = "M 1025 100 L 900 100"; const path7og   = "M 1025 104 L 900 104";
+        const path8g  = "M 1025 150 L 900 150"; const path8og   = "M 1025 154 L 900 154";
+        const path9g  = "M 1025 200 L 900 200"; const path9og   = "M 1025 204 L 900 204";
+        const path10g = "M 1025 250 L 900 250"; const path10og  = "M 1025 254 L 900 254";
+        const path11g = "M 1025 300 L 900 300"; const path11og  = "M 1025 304 L 900 304";
+        const path12g = "M 1025 350 L 900 350"; const path12og  = "M 1025 354 L 900 354";
+        const path13g = "M 1025 400 L 900 400"; const path13og  = "M 1025 404 L 900 404";
+        const path14g = "M 1025 450 L 900 450"; const path14og  = "M 1025 454 L 900 454";
+        const path15g = "M 1025 500 L 900 500"; const path15og  = "M 1025 504 L 900 504";
+        const path16g = "M 1025 550 L 900 550"; const path16og  = "M 1025 554 L 900 554";
+        const path17g = "M 1025 600 L 900 600"; const path17og  = "M 1025 604 L 900 604";        
+
+        // Append the path to the SVG
+        const path1B = svg.append("path").attr("d", path1).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path2B = svg.append("path").attr("d", path2).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path3B = svg.append("path").attr("d", path3).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path4B = svg.append("path").attr("d", path4).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path5B = svg.append("path").attr("d", path5).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path6B = svg.append("path").attr("d", path6).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path7B = svg.append("path").attr("d", path7).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path8B = svg.append("path").attr("d", path8).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path9B = svg.append("path").attr("d", path9).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path10B = svg.append("path").attr("d", path10).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path11B = svg.append("path").attr("d", path11).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path12B = svg.append("path").attr("d", path12).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path13B = svg.append("path").attr("d", path13).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path14B = svg.append("path").attr("d", path14).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path15B = svg.append("path").attr("d", path15).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path16B = svg.append("path").attr("d", path16).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path17B = svg.append("path").attr("d", path17).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+
+        const path1Bo = svg.append("path").attr("d", path1o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path2Bo = svg.append("path").attr("d", path2o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path3Bo = svg.append("path").attr("d", path3o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path4Bo = svg.append("path").attr("d", path4o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path5Bo = svg.append("path").attr("d", path5o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path6Bo = svg.append("path").attr("d", path6o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path7Bo = svg.append("path").attr("d", path7o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path8Bo = svg.append("path").attr("d", path8o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path9Bo = svg.append("path").attr("d", path9o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path10Bo = svg.append("path").attr("d", path10o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path11Bo = svg.append("path").attr("d", path11o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path12Bo = svg.append("path").attr("d", path12o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path13Bo = svg.append("path").attr("d", path13o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path14Bo = svg.append("path").attr("d", path14o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path15Bo = svg.append("path").attr("d", path15o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path16Bo = svg.append("path").attr("d", path16o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+        const path17Bo = svg.append("path").attr("d", path17o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
+
+
+        const path1D  = svg.append("path").attr("d", path1).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path2D  = svg.append("path").attr("d", path2).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path3D  = svg.append("path").attr("d", path3).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path4D  = svg.append("path").attr("d", path4).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path5D  = svg.append("path").attr("d", path5).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path6D  = svg.append("path").attr("d", path6).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path7D  = svg.append("path").attr("d", path7).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path8D  = svg.append("path").attr("d", path8).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path9D  = svg.append("path").attr("d", path9).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path10D = svg.append("path").attr("d", path10).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path11D = svg.append("path").attr("d", path11).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path12D = svg.append("path").attr("d", path12).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path13D = svg.append("path").attr("d", path13).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path14D = svg.append("path").attr("d", path14).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path15D = svg.append("path").attr("d", path15).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path16D = svg.append("path").attr("d", path16).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path17D = svg.append("path").attr("d", path17).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+
+        const path1Do  = svg.append("path").attr("d", path1o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path2Do  = svg.append("path").attr("d", path2o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path3Do  = svg.append("path").attr("d", path3o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path4Do  = svg.append("path").attr("d", path4o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path5Do  = svg.append("path").attr("d", path5o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path6Do  = svg.append("path").attr("d", path6o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path7Do  = svg.append("path").attr("d", path7o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path8Do  = svg.append("path").attr("d", path8o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path9Do  = svg.append("path").attr("d", path9o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path10Do = svg.append("path").attr("d", path10o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path11Do = svg.append("path").attr("d", path11o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path12Do = svg.append("path").attr("d", path12o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path13Do = svg.append("path").attr("d", path13o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path14Do = svg.append("path").attr("d", path14o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path15Do = svg.append("path").attr("d", path15o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path16Do = svg.append("path").attr("d", path16o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+        const path17Do = svg.append("path").attr("d", path17o).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.8);
+
+        const path1Bg = svg.append("path").attr("d", path1g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path2Bg = svg.append("path").attr("d", path2g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path3Bg = svg.append("path").attr("d", path3g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path4Bg = svg.append("path").attr("d", path4g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path5Bg = svg.append("path").attr("d", path5g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path6Bg = svg.append("path").attr("d", path6g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path7Bg = svg.append("path").attr("d", path7g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path8Bg = svg.append("path").attr("d", path8g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path9Bg = svg.append("path").attr("d", path9g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path10Bg = svg.append("path").attr("d", path10g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path11Bg = svg.append("path").attr("d", path11g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path12Bg = svg.append("path").attr("d", path12g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path13Bg = svg.append("path").attr("d", path13g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path14Bg = svg.append("path").attr("d", path14g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path15Bg = svg.append("path").attr("d", path15g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path16Bg = svg.append("path").attr("d", path16g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path17Bg = svg.append("path").attr("d", path17g).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+
+        const car1 = svg.append("image").attr("x",0).attr("y",285).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
+        const car2 = svg.append("image").attr("x",0).attr("y",345).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
+        const car3 = svg.append("image").attr("x",0).attr("y",405).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
+        const car4 = svg.append("image").attr("x",0).attr("y",465).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
+        const car5 = svg.append("image").attr("x",0).attr("y",525).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
+        const car6 = svg.append("image").attr("x",0).attr("y",585).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
+
+        const car7  = svg.append("image").attr("x",1580).attr("y",85).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car8  = svg.append("image").attr("x",1580).attr("y",135).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car9  = svg.append("image").attr("x",1580).attr("y",185).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car10 = svg.append("image").attr("x",1580).attr("y",235).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car11 = svg.append("image").attr("x",1580).attr("y",285).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car12 = svg.append("image").attr("x",1580).attr("y",335).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car13 = svg.append("image").attr("x",1580).attr("y",385).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car14 = svg.append("image").attr("x",1580).attr("y",435).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car15 = svg.append("image").attr("x",1580).attr("y",485).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car16 = svg.append("image").attr("x",1580).attr("y",535).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car17 = svg.append("image").attr("x",1580).attr("y",585).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+
+        // Gold Path Bottom
+        const path1Bgo = svg.append("path").attr("d", path1og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path2Bgo = svg.append("path").attr("d", path2og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path3Bgo = svg.append("path").attr("d", path3og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path4Bgo = svg.append("path").attr("d", path4og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path5Bgo = svg.append("path").attr("d", path5og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path6Bgo = svg.append("path").attr("d", path6og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path7Bgo = svg.append("path").attr("d", path7og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path8Bgo = svg.append("path").attr("d", path8og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path9Bgo = svg.append("path").attr("d", path9og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path10Bgo = svg.append("path").attr("d", path10og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path11Bgo = svg.append("path").attr("d", path11og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path12Bgo = svg.append("path").attr("d", path12og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path13Bgo = svg.append("path").attr("d", path13og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path14Bgo = svg.append("path").attr("d", path14og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path15Bgo = svg.append("path").attr("d", path15og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path16Bgo = svg.append("path").attr("d", path16og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+        const path17Bgo = svg.append("path").attr("d", path17og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
+
+
+        const lenPath1 = path1D.node().getTotalLength();
+        const lenPath2 = path2D.node().getTotalLength();
+        const lenPath3 = path3D.node().getTotalLength();
+        const lenPath4 = path4D.node().getTotalLength();
+        const lenPath5 = path5D.node().getTotalLength();
+        const lenPath6 = path6D.node().getTotalLength();
+        const lenPath7 = path7D.node().getTotalLength();
+        const lenPath8 = path8D.node().getTotalLength();
+        const lenPath9 = path9D.node().getTotalLength();
+        const lenPath10 = path10D.node().getTotalLength();
+        const lenPath11 = path11D.node().getTotalLength();
+        const lenPath12 = path12D.node().getTotalLength();
+        const lenPath13 = path13D.node().getTotalLength();
+        const lenPath14 = path14D.node().getTotalLength();
+        const lenPath15 = path15D.node().getTotalLength();
+        const lenPath16 = path16D.node().getTotalLength();
+        const lenPath17 = path17D.node().getTotalLength();
+
+        var textLabel = svg.append("text")
+        .attr("x", 50)   // Position the text in the center horizontally
+        .attr("y", 110)  // Position the text in the center vertically
+        .text("")
+        .style("text-anchor", "left") // Center the text horizontally
+        .style("font-size", "32px")
+        .style("fill", "black")
+        .style("font-weight", "bold")
+        .attr("class", "avenir");
+
+
+
+        function animatePath() {
+            d3.csv("All.csv")
+            .get(function(error, data) {
+                if (error) {
+                    console.error("Error loading CSV file:", error);
+                } else {
+
+                    path1D.attr("stroke-dasharray",lenPath1).attr("stroke-dashoffset",lenPath1).attr("stroke-width", 2);
+                    path2D.attr("stroke-dasharray",lenPath2).attr("stroke-dashoffset",lenPath2).attr("stroke-width", 2);
+                    path3D.attr("stroke-dasharray",lenPath3).attr("stroke-dashoffset",lenPath3).attr("stroke-width", 2);
+                    path4D.attr("stroke-dasharray",lenPath4).attr("stroke-dashoffset",lenPath4).attr("stroke-width", 2);
+                    path5D.attr("stroke-dasharray",lenPath5).attr("stroke-dashoffset",lenPath5).attr("stroke-width", 2);
+                    path6D.attr("stroke-dasharray",lenPath6).attr("stroke-dashoffset",lenPath6).attr("stroke-width", 2);
+                    path7D.attr("stroke-dasharray",lenPath7).attr("stroke-dashoffset",lenPath7).attr("stroke-width", 2);
+                    path8D.attr("stroke-dasharray",lenPath8).attr("stroke-dashoffset",lenPath8).attr("stroke-width", 2);
+                    path9D.attr("stroke-dasharray",lenPath9).attr("stroke-dashoffset",lenPath9).attr("stroke-width", 2);
+                    path10D.attr("stroke-dasharray",lenPath10).attr("stroke-dashoffset",lenPath10).attr("stroke-width", 2);
+                    path11D.attr("stroke-dasharray",lenPath11).attr("stroke-dashoffset",lenPath11).attr("stroke-width", 2);
+                    path12D.attr("stroke-dasharray",lenPath12).attr("stroke-dashoffset",lenPath12).attr("stroke-width", 2);
+                    path13D.attr("stroke-dasharray",lenPath13).attr("stroke-dashoffset",lenPath13).attr("stroke-width", 2);
+                    path14D.attr("stroke-dasharray",lenPath14).attr("stroke-dashoffset",lenPath14).attr("stroke-width", 2);
+                    path15D.attr("stroke-dasharray",lenPath15).attr("stroke-dashoffset",lenPath15).attr("stroke-width", 2);
+                    path16D.attr("stroke-dasharray",lenPath16).attr("stroke-dashoffset",lenPath16).attr("stroke-width", 2);
+                    path17D.attr("stroke-dasharray",lenPath17).attr("stroke-dashoffset",lenPath17).attr("stroke-width", 2);
+
+                    path1Do.attr("stroke-dasharray",lenPath1).attr("stroke-dashoffset",lenPath1).attr("stroke-width", 2);
+                    path2Do.attr("stroke-dasharray",lenPath2).attr("stroke-dashoffset",lenPath2).attr("stroke-width", 2);
+                    path3Do.attr("stroke-dasharray",lenPath3).attr("stroke-dashoffset",lenPath3).attr("stroke-width", 2);
+                    path4Do.attr("stroke-dasharray",lenPath4).attr("stroke-dashoffset",lenPath4).attr("stroke-width", 2);
+                    path5Do.attr("stroke-dasharray",lenPath5).attr("stroke-dashoffset",lenPath5).attr("stroke-width", 2);
+                    path6Do.attr("stroke-dasharray",lenPath6).attr("stroke-dashoffset",lenPath6).attr("stroke-width", 2);
+                    path7Do.attr("stroke-dasharray",lenPath7).attr("stroke-dashoffset",lenPath7).attr("stroke-width", 2);
+                    path8Do.attr("stroke-dasharray",lenPath8).attr("stroke-dashoffset",lenPath8).attr("stroke-width", 2);
+                    path9Do.attr("stroke-dasharray",lenPath9).attr("stroke-dashoffset",lenPath9).attr("stroke-width", 2);
+                    path10Do.attr("stroke-dasharray",lenPath10).attr("stroke-dashoffset",lenPath10).attr("stroke-width", 2);
+                    path11Do.attr("stroke-dasharray",lenPath11).attr("stroke-dashoffset",lenPath11).attr("stroke-width", 2);
+                    path12Do.attr("stroke-dasharray",lenPath12).attr("stroke-dashoffset",lenPath12).attr("stroke-width", 2);
+                    path13Do.attr("stroke-dasharray",lenPath13).attr("stroke-dashoffset",lenPath13).attr("stroke-width", 2);
+                    path14Do.attr("stroke-dasharray",lenPath14).attr("stroke-dashoffset",lenPath14).attr("stroke-width", 2);
+                    path15Do.attr("stroke-dasharray",lenPath15).attr("stroke-dashoffset",lenPath15).attr("stroke-width", 2);
+                    path16Do.attr("stroke-dasharray",lenPath16).attr("stroke-dashoffset",lenPath16).attr("stroke-width", 2);
+                    path17Do.attr("stroke-dasharray",lenPath17).attr("stroke-dashoffset",lenPath17).attr("stroke-width", 2);
+
+
+
+
+                      // Function to process each row with a time delay
+                    function processRowWithDelay(index) {
+                        if (index < data.length) {
+                        // Process the current row
+                        var row = data[index];
+
+                        console.log(row['Date'])
+                        textLabel.text(formatDate(row['Date']))
+                        path1D.transition().duration(900).attr("stroke-dashoffset", lenPath1 * (1 - (parseFloat(row['TRC'].replace("%", "")) / 100)))
+                        path1Do.transition().duration(900).attr("stroke-dashoffset", lenPath1 * (1 - (parseFloat(row['TRC'].replace("%", "")) / 100)))
+                        car1.transition().duration(900).attr("x",-110+((parseFloat(row['TRC'].replace("%", "")) / 100) * 720))
+                        car1.on("mouseover", function() {teamLabel.text("Train Crew");perLabel.text(row['TRC'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path2D.transition().duration(900).attr("stroke-dashoffset", lenPath2 * (1 - (parseFloat(row['FAM'].replace("%", "")) / 100)))
+                        path2Do.transition().duration(900).attr("stroke-dashoffset", lenPath2 * (1 - (parseFloat(row['FAM'].replace("%", "")) / 100)))
+                        car2.transition().duration(900).attr("x",-110+((parseFloat(row['FAM'].replace("%", "")) / 100) * 720))
+                        car2.on("mouseover", function() {teamLabel.text("Fixed Asset Maintenance");perLabel.text(row['FAM'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path3D.transition().duration(900).attr("stroke-dashoffset", lenPath3 * (1 - (parseFloat(row['TSP'].replace("%", "")) / 100)))
+                        path3Do.transition().duration(900).attr("stroke-dashoffset", lenPath3 * (1 - (parseFloat(row['TSP'].replace("%", "")) / 100)))
+                        car3.transition().duration(900).attr("x",-110+((parseFloat(row['TSP'].replace("%", "")) / 100) * 720))
+                        car3.on("mouseover", function() {teamLabel.text("Train Service Planning");perLabel.text(row['TSP'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path4D.transition().duration(900).attr("stroke-dashoffset", lenPath4 * (1 - (parseFloat(row['NOC'].replace("%", "")) / 100)))
+                        path4Do.transition().duration(900).attr("stroke-dashoffset", lenPath4 * (1 - (parseFloat(row['NOC'].replace("%", "")) / 100)))
+                        car4.transition().duration(900).attr("x",-110+((parseFloat(row['NOC'].replace("%", "")) / 100) * 720))
+                        car4.on("mouseover", function() {teamLabel.text("Network Operations Control");perLabel.text(row['NOC'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path5D.transition().duration(900).attr("stroke-dashoffset", lenPath5 * (1 - (parseFloat(row['RVM'].replace("%", "")) / 100)))
+                        path5Do.transition().duration(900).attr("stroke-dashoffset", lenPath5 * (1 - (parseFloat(row['RVM'].replace("%", "")) / 100)))
+                        car5.transition().duration(900).attr("x",-110+((parseFloat(row['RVM'].replace("%", "")) / 100) * 720))
+                        car5.on("mouseover", function() {teamLabel.text("Revenue Vehicle Maintenance");perLabel.text(row['RVM'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path6D.transition().duration(900).attr("stroke-dashoffset", lenPath6 * (1 - (parseFloat(row['TECH'].replace("%", "")) / 100)))
+                        path6Do.transition().duration(900).attr("stroke-dashoffset", lenPath6 * (1 - (parseFloat(row['TECH'].replace("%", "")) / 100)))
+                        car6.transition().duration(900).attr("x",-110+((parseFloat(row['TECH'].replace("%", "")) / 100) * 720))
+                        car6.on("mouseover", function() {teamLabel.text("Technology");perLabel.text(row['TECH'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+
+                        path7D.transition().duration(900).attr("stroke-dashoffset", lenPath7 * (1 - (parseFloat(row['PER'].replace("%", "")) / 100)))
+                        path7Do.transition().duration(900).attr("stroke-dashoffset", lenPath7 * (1 - (parseFloat(row['PER'].replace("%", "")) / 100)))
+                        car7.transition().duration(900).attr("x",1570-(parseFloat(row['PER'].replace("%", "")) / 100) * 680)
+                        car7.on("mouseover", function() {teamLabel.text("Performance");perLabel.text(row['PER'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path8D.transition().duration(900).attr("stroke-dashoffset", lenPath8 * (1 - (parseFloat(row['CMS'].replace("%", "")) / 100)))
+                        path8Do.transition().duration(900).attr("stroke-dashoffset", lenPath8 * (1 - (parseFloat(row['CMS'].replace("%", "")) / 100)))
+                        car8.transition().duration(900).attr("x",1570-(parseFloat(row['CMS'].replace("%", "")) / 100) * 680)
+                        car8.on("mouseover", function() {teamLabel.text("Commercial");perLabel.text(row['CMS'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path9D.transition().duration(900).attr("stroke-dashoffset", lenPath9 * (1 - (parseFloat(row['FIN'].replace("%", "")) / 100)))
+                        path9Do.transition().duration(900).attr("stroke-dashoffset", lenPath9 * (1 - (parseFloat(row['FIN'].replace("%", "")) / 100)))
+                        car9.transition().duration(900).attr("x",1570-(parseFloat(row['FIN'].replace("%", "")) / 100) * 680)
+                        car9.on("mouseover", function() {teamLabel.text("Finance");perLabel.text(row['FIN'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path10D.transition().duration(900).attr("stroke-dashoffset", lenPath10 * (1 - (parseFloat(row['Q&I'].replace("%", "")) / 100)))
+                        path10Do.transition().duration(900).attr("stroke-dashoffset", lenPath10 * (1 - (parseFloat(row['Q&I'].replace("%", "")) / 100)))
+                        car10.transition().duration(900).attr("x",1570-(parseFloat(row['Q&I'].replace("%", "")) / 100) * 680)
+                        car10.on("mouseover", function() {teamLabel.text("Quality and Information");perLabel.text(row['Q&I'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path11D.transition().duration(900).attr("stroke-dashoffset", lenPath11 * (1 - (parseFloat(row['ENV'].replace("%", "")) / 100)))
+                        path11Do.transition().duration(900).attr("stroke-dashoffset", lenPath11 * (1 - (parseFloat(row['ENV'].replace("%", "")) / 100)))
+                        car11.transition().duration(900).attr("x",1570-(parseFloat(row['ENV'].replace("%", "")) / 100) * 680)
+                        car11.on("mouseover", function() {teamLabel.text("Environment");perLabel.text(row['ENV'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+                        path12D.transition().duration(900).attr("stroke-dashoffset", lenPath12 * (1 - (parseFloat(row['ENE'].replace("%", "")) / 100)))
+                        path12Do.transition().duration(900).attr("stroke-dashoffset", lenPath12 * (1 - (parseFloat(row['ENE'].replace("%", "")) / 100)))
+                        car12.transition().duration(900).attr("x",1570-(parseFloat(row['ENE'].replace("%", "")) / 100) * 680)
+                        car12.on("mouseover", function() {teamLabel.text("Energy");perLabel.text(row['ENE'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
+
+
+                        // Move to the next row after a delay (e.g., 1 second)
+                        setTimeout(function() {
+                            processRowWithDelay(index + 1); // Recursively call with next index
+                        }, 1000); // 1000 milliseconds = 1 second delay
+                        } else {
+                        console.log("All rows processed.");
+                        }
+                    }
+
+                    processRowWithDelay(0);
+
+                }
+            })
+        }
+
+        animatePath();
+    </script>
+
+</body>
+</html>
