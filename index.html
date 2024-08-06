@@ -47,7 +47,7 @@
     <div class="header">
           OnCorr Transition Readiness
     </div>
-    <svg width="1580" height="770"></svg>
+    <svg width="100%" height="770"></svg>
 
     <script>
         function formatDate(dateString) {
@@ -70,24 +70,27 @@
         var teamVar = "";
 
         // Rail Tracks
+        const v = window.innerWidth;
+        console.log(v)
+
         var spacing = 10;
         var numLines = 72;
         var numLinesRight = 72;
 
         // Generate the lines
-        var lines1 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines1.push({x1: x, y1: 300, x2: x + spacing, y2: 304});}
-        var lines2 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines2.push({x1: x, y1: 360, x2: x + spacing, y2: 364});}
-        var lines3 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines3.push({x1: x, y1: 420, x2: x + spacing, y2: 424});}
-        var lines4 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines4.push({x1: x, y1: 480, x2: x + spacing, y2: 484});}
-        var lines5 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines5.push({x1: x, y1: 540, x2: x + spacing, y2: 544});}
-        var lines6 = []; for (var i = 0; i < numLines; i++) {var x = i * spacing; lines6.push({x1: x, y1: 600, x2: x + spacing, y2: 604});}
+        var lines1 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = i * spacing; lines1.push({x1: x, y1: 300, x2: x + spacing, y2: 304});}
+        var lines2 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = i * spacing; lines2.push({x1: x, y1: 360, x2: x + spacing, y2: 364});}
+        var lines3 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = i * spacing; lines3.push({x1: x, y1: 420, x2: x + spacing, y2: 424});}
+        var lines4 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = i * spacing; lines4.push({x1: x, y1: 480, x2: x + spacing, y2: 484});}
+        var lines5 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = i * spacing; lines5.push({x1: x, y1: 540, x2: x + spacing, y2: 544});}
+        var lines6 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = i * spacing; lines6.push({x1: x, y1: 600, x2: x + spacing, y2: 604});}
 
-        var lines7  = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines1.push({x1: x, y1: 100, x2: x - spacing, y2: 104});}
-        var lines8  = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines2.push({x1: x, y1: 150, x2: x - spacing, y2: 154});}
-        var lines9  = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines3.push({x1: x, y1: 200, x2: x - spacing, y2: 204});}
-        var lines10 = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines4.push({x1: x, y1: 250, x2: x - spacing, y2: 254});}
-        var lines11 = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines5.push({x1: x, y1: 300, x2: x - spacing, y2: 304});}
-        var lines12 = []; for (var i = 0; i < numLinesRight; i++) {var x = 910 + i * spacing; lines6.push({x1: x, y1: 350, x2: x - spacing, y2: 354});}
+        var lines7  = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = (v * 0.55)+ i * spacing; lines1.push({x1: x, y1: 100, x2: x - spacing, y2: 104});}
+        var lines8  = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = (v * 0.55) + i * spacing; lines2.push({x1: x, y1: 150, x2: x - spacing, y2: 154});}
+        var lines9  = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = (v * 0.55) + i * spacing; lines3.push({x1: x, y1: 200, x2: x - spacing, y2: 204});}
+        var lines10 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = (v * 0.55) + i * spacing; lines4.push({x1: x, y1: 250, x2: x - spacing, y2: 254});}
+        var lines11 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = (v * 0.55) + i * spacing; lines5.push({x1: x, y1: 300, x2: x - spacing, y2: 304});}
+        var lines12 = []; for (var i = 0; i < (v * 0.45) / 10; i++) {var x = (v * 0.55) + i * spacing; lines6.push({x1: x, y1: 350, x2: x - spacing, y2: 354});}
 
         var lines = lines1.concat(lines2).concat(lines3).concat(lines4).concat(lines5).concat(lines6);
 
@@ -95,68 +98,68 @@
         svg.selectAll("line").data(lines).enter().append("line").attr("class", "line").attr("x1", function(d) { return d.x1; }).attr("y1", function(d) { return d.y1; }).attr("x2", function(d) { return d.x2; }).attr("y2", function(d) { return d.y2; });
 
         // Middle
-        const middle = svg.append("rect").attr("x",760).attr("y",50).attr("width",100).attr("height",650).attr("fill","black")
-        const block1 = svg.append("rect").attr("x",720).attr("y",284).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text1 = svg.append("text").attr("x",740).attr("y",300).attr("text-anchor","middle").text("TRC").attr("class","avenirBox").style("font-weight", "bold");
-        const block2 = svg.append("rect").attr("x",720).attr("y",344).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text2 = svg.append("text").attr("x",740).attr("y",360).attr("text-anchor","middle").text("FAM").attr("class","avenirBox").style("font-weight", "bold");
-        const block3 = svg.append("rect").attr("x",720).attr("y",404).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text3 = svg.append("text").attr("x",740).attr("y",420).attr("text-anchor","middle").text("TSP").attr("class","avenirBox").style("font-weight", "bold");
-        const block4 = svg.append("rect").attr("x",720).attr("y",464).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text4 = svg.append("text").attr("x",740).attr("y",480).attr("text-anchor","middle").text("NOC").attr("class","avenirBox").style("font-weight", "bold");
-        const block5 = svg.append("rect").attr("x",720).attr("y",524).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text5 = svg.append("text").attr("x",740).attr("y",540).attr("text-anchor","middle").text("RVM").attr("class","avenirBox").style("font-weight", "bold");
-        const block6 = svg.append("rect").attr("x",720).attr("y",584).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text6 = svg.append("text").attr("x",740).attr("y",600).attr("text-anchor","middle").text("TECH").attr("class","avenirBox").style("font-weight", "bold").style("font-size", "14px");
+        const middle = svg.append("rect").attr("x",+(v * 0.5)-5).attr("y",50).attr("width",10).attr("height",650).attr("fill","black")
+        const block1 = svg.append("rect").attr("x",(v * 0.45)).attr("y",284).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text1 = svg.append("text").attr("x",+block1.attr("x")+20).attr("y",300).attr("text-anchor","middle").text("TRC").attr("class","avenirBox").style("font-weight", "bold");
+        const block2 = svg.append("rect").attr("x",(v * 0.45)).attr("y",344).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text2 = svg.append("text").attr("x",+block2.attr("x")+20).attr("y",360).attr("text-anchor","middle").text("FAM").attr("class","avenirBox").style("font-weight", "bold");
+        const block3 = svg.append("rect").attr("x",(v * 0.45)).attr("y",404).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text3 = svg.append("text").attr("x",+block3.attr("x")+20).attr("y",420).attr("text-anchor","middle").text("TSP").attr("class","avenirBox").style("font-weight", "bold");
+        const block4 = svg.append("rect").attr("x",(v * 0.45)).attr("y",464).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text4 = svg.append("text").attr("x",+block4.attr("x")+20).attr("y",480).attr("text-anchor","middle").text("NOC").attr("class","avenirBox").style("font-weight", "bold");
+        const block5 = svg.append("rect").attr("x",(v * 0.45)).attr("y",524).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text5 = svg.append("text").attr("x",+block5.attr("x")+20).attr("y",540).attr("text-anchor","middle").text("RVM").attr("class","avenirBox").style("font-weight", "bold");
+        const block6 = svg.append("rect").attr("x",(v * 0.45)).attr("y",584).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text6 = svg.append("text").attr("x",+block6.attr("x")+20).attr("y",600).attr("text-anchor","middle").text("TECH").attr("class","avenirBox").style("font-weight", "bold").style("font-size", "14px");
 
-        const block7 = svg.append("rect").attr("x",860).attr("y",84).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text7 = svg.append("text").attr("x",880).attr("y",100).attr("text-anchor","middle").text("PER").attr("class","avenirBox").style("font-weight", "bold");
-        const block8 = svg.append("rect").attr("x",860).attr("y",134).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text8 = svg.append("text").attr("x",880).attr("y",150).attr("text-anchor","middle").text("CMS").attr("class","avenirBox").style("font-weight", "bold");
-        const block9 = svg.append("rect").attr("x",860).attr("y",184).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text9 = svg.append("text").attr("x",880).attr("y",200).attr("text-anchor","middle").text("FIN").attr("class","avenirBox").style("font-weight", "bold");
-        const block10 = svg.append("rect").attr("x",860).attr("y",234).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text10 = svg.append("text").attr("x",880).attr("y",250).attr("text-anchor","middle").text("Q&I").attr("class","avenirBox").style("font-weight", "bold");
-        const block11 = svg.append("rect").attr("x",860).attr("y",284).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text11 = svg.append("text").attr("x",880).attr("y",300).attr("text-anchor","middle").text("ENV").attr("class","avenirBox").style("font-weight", "bold");
-        const block12 = svg.append("rect").attr("x",860).attr("y",334).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text12 = svg.append("text").attr("x",880).attr("y",350).attr("text-anchor","middle").text("ENE").attr("class","avenirBox").style("font-weight", "bold");
-        const block13 = svg.append("rect").attr("x",860).attr("y",384).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
-        const block14 = svg.append("rect").attr("x",860).attr("y",434).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
-        const block15 = svg.append("rect").attr("x",860).attr("y",484).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
-        const block16 = svg.append("rect").attr("x",860).attr("y",534).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
-        const block17 = svg.append("rect").attr("x",860).attr("y",584).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block7 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",84).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text7 = svg.append("text").attr("x",+block7.attr("x")+20).attr("y",100).attr("text-anchor","middle").text("PER").attr("class","avenirBox").style("font-weight", "bold");
+        const block8 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",134).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text8 = svg.append("text").attr("x",+block8.attr("x")+20).attr("y",150).attr("text-anchor","middle").text("CMS").attr("class","avenirBox").style("font-weight", "bold");
+        const block9 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",184).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text9 = svg.append("text").attr("x",+block9.attr("x")+20).attr("y",200).attr("text-anchor","middle").text("FIN").attr("class","avenirBox").style("font-weight", "bold");
+        const block10 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",234).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text10 = svg.append("text").attr("x",+block10.attr("x")+20).attr("y",250).attr("text-anchor","middle").text("Q&I").attr("class","avenirBox").style("font-weight", "bold");
+        const block11 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",284).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text11 = svg.append("text").attr("x",+block11.attr("x")+20).attr("y",300).attr("text-anchor","middle").text("ENV").attr("class","avenirBox").style("font-weight", "bold");
+        const block12 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",334).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)"); const text12 = svg.append("text").attr("x",+block12.attr("x")+20).attr("y",350).attr("text-anchor","middle").text("ENE").attr("class","avenirBox").style("font-weight", "bold");
+        const block13 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",384).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block14 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",434).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block15 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",484).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block16 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",534).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
+        const block17 = svg.append("rect").attr("x",+(v * 0.55)-40).attr("y",584).attr("width",40).attr("height",21).attr("fill","rgb(219,172,52)")
 
         // Define a simple path (triangle in this case)
-        const path1 = "M 0 300 L 720 300"; const path1o = "M 0 304 L 720 304"; 
-        const path2 = "M 0 360 L 720 360"; const path2o = "M 0 364 L 720 364"; 
-        const path3 = "M 0 420 L 720 420"; const path3o = "M 0 424 L 720 424";
-        const path4 = "M 0 480 L 720 480"; const path4o = "M 0 484 L 720 484";
-        const path5 = "M 0 540 L 720 540"; const path5o = "M 0 544 L 720 544"; 
-        const path6 = "M 0 600 L 720 600"; const path6o = "M 0 604 L 720 604";
+        const path1 = "M 0 300 L " + (v * 0.45) + " 300"; const path1o = "M 0 304 L " + (v * 0.45) + " 304"; 
+        const path2 = "M 0 360 L " + (v * 0.45) + " 360"; const path2o = "M 0 364 L " + (v * 0.45) + " 364"; 
+        const path3 = "M 0 420 L " + (v * 0.45) + " 420"; const path3o = "M 0 424 L " + (v * 0.45) + " 424";
+        const path4 = "M 0 480 L " + (v * 0.45) + " 480"; const path4o = "M 0 484 L " + (v * 0.45) + " 484";
+        const path5 = "M 0 540 L " + (v * 0.45) + " 540"; const path5o = "M 0 544 L " + (v * 0.45) + " 544"; 
+        const path6 = "M 0 600 L " + (v * 0.45) + " 600"; const path6o = "M 0 604 L " + (v * 0.45) + " 604";
 
-        const path7  = "M 1580 100 L 900 100"; const path7o   = "M 1580 104 L 900 104";
-        const path8  = "M 1580 150 L 900 150"; const path8o   = "M 1580 154 L 900 154";
-        const path9  = "M 1580 200 L 900 200"; const path9o   = "M 1580 204 L 900 204";
-        const path10 = "M 1580 250 L 900 250"; const path10o  = "M 1580 254 L 900 254";
-        const path11 = "M 1580 300 L 900 300"; const path11o  = "M 1580 304 L 900 304";
-        const path12 = "M 1580 350 L 900 350"; const path12o  = "M 1580 354 L 900 354";
-        const path13 = "M 1580 400 L 900 400"; const path13o  = "M 1580 404 L 900 404";
-        const path14 = "M 1580 450 L 900 450"; const path14o  = "M 1580 454 L 900 454";
-        const path15 = "M 1580 500 L 900 500"; const path15o  = "M 1580 504 L 900 504";
-        const path16 = "M 1580 550 L 900 550"; const path16o  = "M 1580 554 L 900 554";
-        const path17 = "M 1580 600 L 900 600"; const path17o  = "M 1580 604 L 900 604";
+        const path7  = "M " + v + " 100 L " + (v * 0.55) + " 100"; const path7o   = "M " + v + " 104 L " + (v * 0.55) + " 104";
+        const path8  = "M " + v + " 150 L " + (v * 0.55) + " 150"; const path8o   = "M " + v + " 154 L " + (v * 0.55) + " 154";
+        const path9  = "M " + v + " 200 L " + (v * 0.55) + " 200"; const path9o   = "M " + v + " 204 L " + (v * 0.55) + " 204";
+        const path10 = "M " + v + " 250 L " + (v * 0.55) + " 250"; const path10o  = "M " + v + " 254 L " + (v * 0.55) + " 254";
+        const path11 = "M " + v + " 300 L " + (v * 0.55) + " 300"; const path11o  = "M " + v + " 304 L " + (v * 0.55) + " 304";
+        const path12 = "M " + v + " 350 L " + (v * 0.55) + " 350"; const path12o  = "M " + v + " 354 L " + (v * 0.55) + " 354";
+        const path13 = "M " + v + " 400 L " + (v * 0.55) + " 400"; const path13o  = "M " + v + " 404 L " + (v * 0.55) + " 404";
+        const path14 = "M " + v + " 450 L " + (v * 0.55) + " 450"; const path14o  = "M " + v + " 454 L " + (v * 0.55) + " 454";
+        const path15 = "M " + v + " 500 L " + (v * 0.55) + " 500"; const path15o  = "M " + v + " 504 L " + (v * 0.55) + " 504";
+        const path16 = "M " + v + " 550 L " + (v * 0.55) + " 550"; const path16o  = "M " + v + " 554 L " + (v * 0.55) + " 554";
+        const path17 = "M " + v + " 600 L " + (v * 0.55) + " 600"; const path17o  = "M " + v + " 604 L " + (v * 0.55) + " 604";
 
         var teamLabel = svg.append("text").attr("x",50).attr("y",150).text(perVar).attr("class","avenir").style("font-size", "24px").style("font-weight", "bold");
         var perLabel = svg.append("text").attr("x",50).attr("y",185).text(teamVar).attr("class","avenir").style("font-size", "24px");
 
         // Gold Path
-        const path1g = "M 595 300 L 720 300"; const path1og = "M 595 304 L 720 304"; 
-        const path2g = "M 595 360 L 720 360"; const path2og = "M 595 364 L 720 364"; 
-        const path3g = "M 595 420 L 720 420"; const path3og = "M 595 424 L 720 424";
-        const path4g = "M 595 480 L 720 480"; const path4og = "M 595 484 L 720 484";
-        const path5g = "M 595 540 L 720 540"; const path5og = "M 595 544 L 720 544"; 
-        const path6g = "M 595 600 L 720 600"; const path6og = "M 595 604 L 720 604";
+        const path1g = "M " + ((v * 0.45) - 125) + " 300 L " + (v * 0.45) + " 300"; const path1og = "M " + ((v * 0.45) - 125) + " 304 L " + (v * 0.45) + " 304"; 
+        const path2g = "M " + ((v * 0.45) - 125) + " 360 L " + (v * 0.45) + " 360"; const path2og = "M " + ((v * 0.45) - 125) + " 364 L " + (v * 0.45) + " 364"; 
+        const path3g = "M " + ((v * 0.45) - 125) + " 420 L " + (v * 0.45) + " 420"; const path3og = "M " + ((v * 0.45) - 125) + " 424 L " + (v * 0.45) + " 424";
+        const path4g = "M " + ((v * 0.45) - 125) + " 480 L " + (v * 0.45) + " 480"; const path4og = "M " + ((v * 0.45) - 125) + " 484 L " + (v * 0.45) + " 484";
+        const path5g = "M " + ((v * 0.45) - 125) + " 540 L " + (v * 0.45) + " 540"; const path5og = "M " + ((v * 0.45) - 125) + " 544 L " + (v * 0.45) + " 544"; 
+        const path6g = "M " + ((v * 0.45) - 125) + " 600 L " + (v * 0.45) + " 600"; const path6og = "M " + ((v * 0.45) - 125) + " 604 L " + (v * 0.45) + " 604";
 
-        const path7g  = "M 1025 100 L 900 100"; const path7og   = "M 1025 104 L 900 104";
-        const path8g  = "M 1025 150 L 900 150"; const path8og   = "M 1025 154 L 900 154";
-        const path9g  = "M 1025 200 L 900 200"; const path9og   = "M 1025 204 L 900 204";
-        const path10g = "M 1025 250 L 900 250"; const path10og  = "M 1025 254 L 900 254";
-        const path11g = "M 1025 300 L 900 300"; const path11og  = "M 1025 304 L 900 304";
-        const path12g = "M 1025 350 L 900 350"; const path12og  = "M 1025 354 L 900 354";
-        const path13g = "M 1025 400 L 900 400"; const path13og  = "M 1025 404 L 900 404";
-        const path14g = "M 1025 450 L 900 450"; const path14og  = "M 1025 454 L 900 454";
-        const path15g = "M 1025 500 L 900 500"; const path15og  = "M 1025 504 L 900 504";
-        const path16g = "M 1025 550 L 900 550"; const path16og  = "M 1025 554 L 900 554";
-        const path17g = "M 1025 600 L 900 600"; const path17og  = "M 1025 604 L 900 604";        
+        const path7g  = "M " + ((v * 0.55) + 125) + " 100 L " + (v * 0.55) + " 100"; const path7og   = "M " + ((v * 0.55) + 125) + " 104 L " + (v * 0.55) + " 104";
+        const path8g  = "M " + ((v * 0.55) + 125) + " 150 L " + (v * 0.55) + " 150"; const path8og   = "M " + ((v * 0.55) + 125) + " 154 L " + (v * 0.55) + " 154";
+        const path9g  = "M " + ((v * 0.55) + 125) + " 200 L " + (v * 0.55) + " 200"; const path9og   = "M " + ((v * 0.55) + 125) + " 204 L " + (v * 0.55) + " 204";
+        const path10g = "M " + ((v * 0.55) + 125) + " 250 L " + (v * 0.55) + " 250"; const path10og  = "M " + ((v * 0.55) + 125) + " 254 L " + (v * 0.55) + " 254";
+        const path11g = "M " + ((v * 0.55) + 125) + " 300 L " + (v * 0.55) + " 300"; const path11og  = "M " + ((v * 0.55) + 125) + " 304 L " + (v * 0.55) + " 304";
+        const path12g = "M " + ((v * 0.55) + 125) + " 350 L " + (v * 0.55) + " 350"; const path12og  = "M " + ((v * 0.55) + 125) + " 354 L " + (v * 0.55) + " 354";
+        const path13g = "M " + ((v * 0.55) + 125) + " 400 L " + (v * 0.55) + " 400"; const path13og  = "M " + ((v * 0.55) + 125) + " 404 L " + (v * 0.55) + " 404";
+        const path14g = "M " + ((v * 0.55) + 125) + " 450 L " + (v * 0.55) + " 450"; const path14og  = "M " + ((v * 0.55) + 125) + " 454 L " + (v * 0.55) + " 454";
+        const path15g = "M " + ((v * 0.55) + 125) + " 500 L " + (v * 0.55) + " 500"; const path15og  = "M " + ((v * 0.55) + 125) + " 504 L " + (v * 0.55) + " 504";
+        const path16g = "M " + ((v * 0.55) + 125) + " 550 L " + (v * 0.55) + " 550"; const path16og  = "M " + ((v * 0.55) + 125) + " 554 L " + (v * 0.55) + " 554";
+        const path17g = "M " + ((v * 0.55) + 125) + " 600 L " + (v * 0.55) + " 600"; const path17og  = "M " + ((v * 0.55) + 125) + " 604 L " + (v * 0.55) + " 604";        
 
         // Append the path to the SVG
         const path1B = svg.append("path").attr("d", path1).attr("stroke", "rgb(0,0,0)").attr("stroke-width", 2).attr("fill", "none").attr("opacity",0.2);
@@ -257,17 +260,17 @@
         const car5 = svg.append("image").attr("x",0).attr("y",525).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
         const car6 = svg.append("image").attr("x",0).attr("y",585).attr("width",125).attr("height",24).attr("xlink:href","trainRev.png")
 
-        const car7  = svg.append("image").attr("x",1580).attr("y",85).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car8  = svg.append("image").attr("x",1580).attr("y",135).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car9  = svg.append("image").attr("x",1580).attr("y",185).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car10 = svg.append("image").attr("x",1580).attr("y",235).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car11 = svg.append("image").attr("x",1580).attr("y",285).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car12 = svg.append("image").attr("x",1580).attr("y",335).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car13 = svg.append("image").attr("x",1580).attr("y",385).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car14 = svg.append("image").attr("x",1580).attr("y",435).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car15 = svg.append("image").attr("x",1580).attr("y",485).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car16 = svg.append("image").attr("x",1580).attr("y",535).attr("width",125).attr("height",24).attr("xlink:href","train.png");
-        const car17 = svg.append("image").attr("x",1580).attr("y",585).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car7  = svg.append("image").attr("x",v).attr("y",85).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car8  = svg.append("image").attr("x",v).attr("y",135).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car9  = svg.append("image").attr("x",v).attr("y",185).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car10 = svg.append("image").attr("x",v).attr("y",235).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car11 = svg.append("image").attr("x",v).attr("y",285).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car12 = svg.append("image").attr("x",v).attr("y",335).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car13 = svg.append("image").attr("x",v).attr("y",385).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car14 = svg.append("image").attr("x",v).attr("y",435).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car15 = svg.append("image").attr("x",v).attr("y",485).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car16 = svg.append("image").attr("x",v).attr("y",535).attr("width",125).attr("height",24).attr("xlink:href","train.png");
+        const car17 = svg.append("image").attr("x",v).attr("y",585).attr("width",125).attr("height",24).attr("xlink:href","train.png");
 
         // Gold Path Bottom
         const path1Bgo = svg.append("path").attr("d", path1og).attr("stroke", "rgb(219,172,52)").attr("stroke-width", 2).attr("fill", "none");
@@ -375,52 +378,52 @@
                         textLabel.text(formatDate(row['Date']))
                         path1D.transition().duration(900).attr("stroke-dashoffset", lenPath1 * (1 - (parseFloat(row['TRC'].replace("%", "")) / 100)))
                         path1Do.transition().duration(900).attr("stroke-dashoffset", lenPath1 * (1 - (parseFloat(row['TRC'].replace("%", "")) / 100)))
-                        car1.transition().duration(900).attr("x",-110+((parseFloat(row['TRC'].replace("%", "")) / 100) * 720))
+                        car1.transition().duration(900).attr("x",-110+((parseFloat(row['TRC'].replace("%", "")) / 100) * (v * 0.45)))
                         car1.on("mouseover", function() {teamLabel.text("Train Crew");perLabel.text(row['TRC'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path2D.transition().duration(900).attr("stroke-dashoffset", lenPath2 * (1 - (parseFloat(row['FAM'].replace("%", "")) / 100)))
                         path2Do.transition().duration(900).attr("stroke-dashoffset", lenPath2 * (1 - (parseFloat(row['FAM'].replace("%", "")) / 100)))
-                        car2.transition().duration(900).attr("x",-110+((parseFloat(row['FAM'].replace("%", "")) / 100) * 720))
+                        car2.transition().duration(900).attr("x",-110+((parseFloat(row['FAM'].replace("%", "")) / 100) * (v * 0.45)))
                         car2.on("mouseover", function() {teamLabel.text("Fixed Asset Maintenance");perLabel.text(row['FAM'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path3D.transition().duration(900).attr("stroke-dashoffset", lenPath3 * (1 - (parseFloat(row['TSP'].replace("%", "")) / 100)))
                         path3Do.transition().duration(900).attr("stroke-dashoffset", lenPath3 * (1 - (parseFloat(row['TSP'].replace("%", "")) / 100)))
-                        car3.transition().duration(900).attr("x",-110+((parseFloat(row['TSP'].replace("%", "")) / 100) * 720))
+                        car3.transition().duration(900).attr("x",-110+((parseFloat(row['TSP'].replace("%", "")) / 100) * (v * 0.45)))
                         car3.on("mouseover", function() {teamLabel.text("Train Service Planning");perLabel.text(row['TSP'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path4D.transition().duration(900).attr("stroke-dashoffset", lenPath4 * (1 - (parseFloat(row['NOC'].replace("%", "")) / 100)))
                         path4Do.transition().duration(900).attr("stroke-dashoffset", lenPath4 * (1 - (parseFloat(row['NOC'].replace("%", "")) / 100)))
-                        car4.transition().duration(900).attr("x",-110+((parseFloat(row['NOC'].replace("%", "")) / 100) * 720))
+                        car4.transition().duration(900).attr("x",-110+((parseFloat(row['NOC'].replace("%", "")) / 100) * (v * 0.45)))
                         car4.on("mouseover", function() {teamLabel.text("Network Operations Control");perLabel.text(row['NOC'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path5D.transition().duration(900).attr("stroke-dashoffset", lenPath5 * (1 - (parseFloat(row['RVM'].replace("%", "")) / 100)))
                         path5Do.transition().duration(900).attr("stroke-dashoffset", lenPath5 * (1 - (parseFloat(row['RVM'].replace("%", "")) / 100)))
-                        car5.transition().duration(900).attr("x",-110+((parseFloat(row['RVM'].replace("%", "")) / 100) * 720))
+                        car5.transition().duration(900).attr("x",-110+((parseFloat(row['RVM'].replace("%", "")) / 100) * (v * 0.45)))
                         car5.on("mouseover", function() {teamLabel.text("Revenue Vehicle Maintenance");perLabel.text(row['RVM'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path6D.transition().duration(900).attr("stroke-dashoffset", lenPath6 * (1 - (parseFloat(row['TECH'].replace("%", "")) / 100)))
                         path6Do.transition().duration(900).attr("stroke-dashoffset", lenPath6 * (1 - (parseFloat(row['TECH'].replace("%", "")) / 100)))
-                        car6.transition().duration(900).attr("x",-110+((parseFloat(row['TECH'].replace("%", "")) / 100) * 720))
+                        car6.transition().duration(900).attr("x",-110+((parseFloat(row['TECH'].replace("%", "")) / 100) * (v * 0.45)))
                         car6.on("mouseover", function() {teamLabel.text("Technology");perLabel.text(row['TECH'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
 
                         path7D.transition().duration(900).attr("stroke-dashoffset", lenPath7 * (1 - (parseFloat(row['PER'].replace("%", "")) / 100)))
                         path7Do.transition().duration(900).attr("stroke-dashoffset", lenPath7 * (1 - (parseFloat(row['PER'].replace("%", "")) / 100)))
-                        car7.transition().duration(900).attr("x",1570-(parseFloat(row['PER'].replace("%", "")) / 100) * 680)
+                        car7.transition().duration(900).attr("x",v-(parseFloat(row['PER'].replace("%", "")) / 100) * (v * 0.45))
                         car7.on("mouseover", function() {teamLabel.text("Performance");perLabel.text(row['PER'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path8D.transition().duration(900).attr("stroke-dashoffset", lenPath8 * (1 - (parseFloat(row['CMS'].replace("%", "")) / 100)))
                         path8Do.transition().duration(900).attr("stroke-dashoffset", lenPath8 * (1 - (parseFloat(row['CMS'].replace("%", "")) / 100)))
-                        car8.transition().duration(900).attr("x",1570-(parseFloat(row['CMS'].replace("%", "")) / 100) * 680)
+                        car8.transition().duration(900).attr("x",v-(parseFloat(row['CMS'].replace("%", "")) / 100) * (v * 0.45))
                         car8.on("mouseover", function() {teamLabel.text("Commercial");perLabel.text(row['CMS'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path9D.transition().duration(900).attr("stroke-dashoffset", lenPath9 * (1 - (parseFloat(row['FIN'].replace("%", "")) / 100)))
                         path9Do.transition().duration(900).attr("stroke-dashoffset", lenPath9 * (1 - (parseFloat(row['FIN'].replace("%", "")) / 100)))
-                        car9.transition().duration(900).attr("x",1570-(parseFloat(row['FIN'].replace("%", "")) / 100) * 680)
+                        car9.transition().duration(900).attr("x",v-(parseFloat(row['FIN'].replace("%", "")) / 100) * (v * 0.45))
                         car9.on("mouseover", function() {teamLabel.text("Finance");perLabel.text(row['FIN'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path10D.transition().duration(900).attr("stroke-dashoffset", lenPath10 * (1 - (parseFloat(row['Q&I'].replace("%", "")) / 100)))
                         path10Do.transition().duration(900).attr("stroke-dashoffset", lenPath10 * (1 - (parseFloat(row['Q&I'].replace("%", "")) / 100)))
-                        car10.transition().duration(900).attr("x",1570-(parseFloat(row['Q&I'].replace("%", "")) / 100) * 680)
+                        car10.transition().duration(900).attr("x",v-(parseFloat(row['Q&I'].replace("%", "")) / 100) * (v * 0.45))
                         car10.on("mouseover", function() {teamLabel.text("Quality and Information");perLabel.text(row['Q&I'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path11D.transition().duration(900).attr("stroke-dashoffset", lenPath11 * (1 - (parseFloat(row['ENV'].replace("%", "")) / 100)))
                         path11Do.transition().duration(900).attr("stroke-dashoffset", lenPath11 * (1 - (parseFloat(row['ENV'].replace("%", "")) / 100)))
-                        car11.transition().duration(900).attr("x",1570-(parseFloat(row['ENV'].replace("%", "")) / 100) * 680)
+                        car11.transition().duration(900).attr("x",v-(parseFloat(row['ENV'].replace("%", "")) / 100) * (v * 0.45))
                         car11.on("mouseover", function() {teamLabel.text("Environment");perLabel.text(row['ENV'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
                         path12D.transition().duration(900).attr("stroke-dashoffset", lenPath12 * (1 - (parseFloat(row['ENE'].replace("%", "")) / 100)))
                         path12Do.transition().duration(900).attr("stroke-dashoffset", lenPath12 * (1 - (parseFloat(row['ENE'].replace("%", "")) / 100)))
-                        car12.transition().duration(900).attr("x",1570-(parseFloat(row['ENE'].replace("%", "")) / 100) * 680)
+                        car12.transition().duration(900).attr("x",v-(parseFloat(row['ENE'].replace("%", "")) / 100) * (v * 0.45))
                         car12.on("mouseover", function() {teamLabel.text("Energy");perLabel.text(row['ENE'])}).on("mouseout", function() {teamLabel.text("");perLabel.text("")})
 
 
